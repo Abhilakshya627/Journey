@@ -1,0 +1,21 @@
+h1{
+    font-size: xx-large;
+    text-align: center;
+    background-color: yellow;
+    text-decoration-color: black;
+}
+h2{
+    font-size: large;
+    background-color: green;
+    text-decoration-color: black;
+}
+h3{
+    font-size: medium;
+
+}
+p{
+    width: 800px;
+    color: cyan;
+    background-color:black;
+    text-align: justify;
+}

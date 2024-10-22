@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 1</title>
+</head>
+<body>
+    <h1>Event Registration Form</h1>
+    <br><br>
+    <form action="">
+        <label for="name">Name : </label>
+        <input type="text" id="name">
+        <br><br>
+        <label for="email">Email : </label>
+        <input type="text" id="email">
+        <br><br>
+        <label for="tel">Phone : </label>
+        <input type="tel" id="tel">
+        <br><br>
+        <label for="gender">Gender : </label>
+        <br>
+        <input type="radio" name="male" id="gender" value="Male">Male
+        <input type="radio" name="female" id="gender" value="Female">Female
+        <br><br>
+        <label for="octype">Occupation : </label>
+        <select name="occupation" id="octype">
+            <option value="Student">Student</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Office">Office</option>
+        </select>
+        <br><br>
+        <fieldset>
+            <legend>Topics of Interest</legend>
+            <input type="checkbox" name="c1" id="c1">
+            <label for="c1">HTML</label>
+            <input type="checkbox" name="c2" id="c2">
+            <label for="c2">JavaScript</label>
+            <input type="checkbox" name="c3" id="c3">
+            <label for="c3">CSS</label>
+        </fieldset>
+        <br><br>
+        <label for="Comments">Comment</label>
+        <br>
+        <textarea name="textbox" id="Comments" cols="30" rows="5" placeholder="Enter your Remarks"></textarea>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    
+</body>
+</html>
