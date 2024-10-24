@@ -217,6 +217,29 @@ void reverse(sl **head)
     (*head) = prev;
 }
 
+sl* cloneList(sl *head)
+{
+    if (head == NULL) return NULL;
+    sl *cloneHead = NULL;
+    sl *cloneTail = NULL;
+    sl *current = head;
+    while (current != NULL)
+    {
+        sl *newNode = (sl*)malloc(sizeof(sl));
+        newNode->data = current->data;
+        newNode->next = NULL;
+        if (cloneHead == NULL) {
+            cloneHead = newNode;
+            cloneTail = newNode;
+        } else {
+            cloneTail->next = newNode;
+            cloneTail = newNode;
+        }
+        current = current->next;
+    }
+    return cloneHead;
+}
+
 int isPali(sl *head)
 {
     if (head == NULL || head->next == NULL)
@@ -228,19 +251,20 @@ int isPali(sl *head)
         fast = fast->next->next;
         slow = slow->next;
     }
-    sl *secondHalf = slow;
-    reverse(&secondHalf);
+    sl *secondHalfClone = cloneList(slow);
+    reverse(&secondHalfClone);
     sl *firstHalf = head;
-    sl *secondHalfCopy = secondHalf;
+    sl *secondHalf = secondHalfClone;
     while (secondHalf != NULL)
     {
         if (firstHalf->data != secondHalf->data)
-            return 0;
+        {
+            return 0;  
+        }
         firstHalf = firstHalf->next;
         secondHalf = secondHalf->next;
     }
-    reverse(&secondHalfCopy);
-    return 1;
+    return 1;  
 }
 
 void queue()
