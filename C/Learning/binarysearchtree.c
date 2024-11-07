@@ -26,7 +26,7 @@ void insert(bt **root, int x) {
         insert(&((*root)->r), x);
     }
 }
-
+  
 bt *findMin(bt *root) {
     while (root->l != NULL) root = root->l;
     return root;
@@ -34,7 +34,7 @@ bt *findMin(bt *root) {
 
 bt *deleteNode(bt *root, int x) {
     if (root == NULL) return root;
-    if (x < root->data) {
+    if (x < root->data) { 
         root->l = deleteNode(root->l, x);
     } else if (x > root->data) {
         root->r = deleteNode(root->r, x);
@@ -52,10 +52,8 @@ bt *deleteNode(bt *root, int x) {
 
         // Node with two children: Get the inorder successor (smallest in the right subtree)
         bt *temp = findMin(root->r);
-
         // Copy the inorder successor's content to this node
         root->data = temp->data;
-
         // Delete the inorder successor
         root->r = deleteNode(root->r, temp->data);
     }
