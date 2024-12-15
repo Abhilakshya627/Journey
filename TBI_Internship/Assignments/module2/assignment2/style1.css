@@ -1,0 +1,235 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #0078d7, #004d99);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 20px;
+}
+header h1 {
+    font-size: 2.8rem;
+    margin: 0;
+}
+header p {
+    font-size: 1.3rem;
+    margin: 5px 0 0;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+nav a {
+    text-decoration: none;
+    color: #0078d7;
+    margin: 0 15px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+nav a:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* About Section */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile-image {
+    border-radius: 50%;
+    max-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Projects Section */
+.project {
+    margin-bottom: 20px;
+}
+.project-info {
+    padding: 15px;
+    border-left: 4px solid #0078d7;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+.project-info h3 a {
+    color: #0078d7;
+    text-decoration: none;
+    font-weight: bold;
+}
+.project-info h3 a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Section */
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    margin: 10px 0;
+}
+ul li a {
+    color: #0078d7;
+    text-decoration: none;
+}
+ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 20px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    header p {
+        font-size: 1.1rem;
+    }
+    nav {
+        flex-direction: column;
+    }
+    nav a {
+        margin: 5px 0;
+    }
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-image {
+        max-width: 120px;
+    }
+}
+
+/* Contact form styles */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#contact-form input,
+#contact-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact-form button {
+    padding: 10px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact-form button:hover {
+    background-color: #0056a1;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+.dark-mode header {
+    background: linear-gradient(to right, #004d99, #00264d);
+}
+
+.dark-mode nav {
+    background: #444;
+}
+
+.dark-mode nav a {
+    color: #f4f4f4;
+}
+
+.dark-mode nav a:hover {
+    background-color: #00264d;
+}
+
+.dark-mode section {
+    background: #444;
+    border: 1px solid #555;
+}
+
+.dark-mode footer {
+    background: #222;
+}
+
+.dark-mode #contact-form input,
+.dark-mode #contact-form textarea {
+    background-color: #555;
+    color: #f4f4f4;
+    border: 1px solid #666;
+}
+
+.dark-mode #contact-form button {
+    background-color: #0078d7;
+}
+
+.dark-mode #contact-form button:hover {
+    background-color: #0056a1;
+}
+
+/* Dark mode styles for project-info */
+.dark-mode .project-info {
+    background-color: #555; /* Darker background for project info */
+    border-left: 4px solid #0078d7; /* Keep the left border color */
+    color: #f4f4f4; /* Text color */
+}
+
+.dark-mode .project-info h3 a {
+    color: #f4f4f4; /* Link color in project info */
+}
+
+.dark-mode .project-info h3 a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
