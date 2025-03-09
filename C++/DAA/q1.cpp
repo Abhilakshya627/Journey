@@ -1,44 +1,38 @@
-// Dutch National Flag Problem (Sort the Color(LeetCode))
-#include <iostream>
-#include <vector>
-#include <algorithm>
+//Given an array of nonnegative integers, design a linear algorithm and implement it using a program to find whether a given key element is present in the array or not. Also, find the total number of comparisons for each input case. (Time Complexity = O(n), where n is the size of input).
+#include <bits/stdc++.h>
+using namespace std;
+
+int LinearSearch(vector<int> a, int key,int &comp){
+    int i;
+    for(i=0;i<a.size();i++){
+        comp++;
+        if(a[i]==key) return i+1;
+    }
+    return -1;
+}
 
 int main(){
-    int n,i,t,j;
-    std::cout<<"Enter size of array : ";
-    std::cin>>n;
-    std::vector<int> a(n);
-    std::cout<<"Enter elements of array\n";
-    for(i=0;i<n;i++){
-        std::cout<<"Enter element "<<i+1<<" : ";
-        std::cin>>a[i];
-    }
-    std::cout<<"Printing array : ";
-    for(i=0;i<n;i++){
-        std::cout<<a[i]<<" ";
-    }
-    std::cout<<"\n";
-    for(i=0,j=n-1;i<n && j>=0;i++,j--){
-        if(a[i]>a[j] && i<j){
-            t=a[i];
-            a[i]=a[j];
-            a[j]=t;
-        }else if(a[j]==0){
-            a[j]=a[0];
-            a[0]=0;
-            i--;
-        }else if(a[i]==0){
-            a[i]=a[0];
-            a[0]=0;
-            j++;
-        }else if(a[i]==a[j]){
-            i--;
+    int t;
+    cout<<"Abhilakshya Bhatt \nRoll Number: 03\nUniversity Roll Number: 2023975\n";
+    cout<<"Enter number of test cases : ";
+    cin>>t;
+    while(t--){
+        int n,comp=0;
+        cout<<"Enter size of array : ";
+        cin>>n;
+        vector<int> a(n);
+        cout<<"Enter elements of array : ";
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+        }
+        int key;
+        cout<<"Enter key element : ";
+        cin>>key;
+        int index=LinearSearch(a,key,comp);
+        if(index==-1){
+            cout<<"Not Present "<<comp<<"\n";
+        }else{
+            cout<<"Present "<<comp<<"\n";
         }
     }
-    std::cout<<"Printing sorted array : ";
-    for(i=0;i<n;i++){
-        std::cout<<a[i]<<" ";
-    }
-    
-    return 0;
 }

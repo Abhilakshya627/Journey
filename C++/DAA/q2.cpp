@@ -1,118 +1,52 @@
-//Write a program to implement linear search, binary search and jump search and count the number of comparisons in each case.
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <algorithm>
+//Given an already sorted array of positive integers, design an algorithm and implement it using a program to find whether a given key element is present in the array or not. Also, find the total number of comparisons for each input case. (Time Complexity = O(log2n), where n is the size of input).
+#include <bits/stdc++.h>
+using namespace std;
 
-void linearSearch(const std::vector<int>& a, int key) {
-    int n = a.size();
-    int count = 0;
-    std::cout << "Array: ";
-    for (int i = 0; i < n; i++) {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-    for (int i = 0; i < n; i++) {
-        ++count;
-        if (a[i] == key) {
-            cout << "Element found at index: " << i << endl;
-            cout << "Number of comparisons: " << count << endl;
-            return;
+int binarySearch(vector<int> arr, int key, int& comp){
+    int low = 0, high = arr.size()-1;
+    while(low <= high){
+        int mid = low + (high - low)/2;
+        if(arr[mid] == key){
+            comp++;
+            return mid;
         }
-    }
-    cout << "Element not found" << endl;
-    cout << "Number of comparisons: " << count << endl;
-}
-
-void binarySearch(const vector<int>& a, int key) {
-    int n = a.size();
-    int count = 0;
-    vector<int> sortedArray = a; // Create a copy of the array and sort it
-    sort(sortedArray.begin(), sortedArray.end());
-    cout << "Sorted Array: ";
-    for (int i = 0; i < n; i++) {
-        cout << sortedArray[i] << " ";
-    }
-    cout << endl;
-
-    int low = 0, high = n - 1;
-    while (low <= high) {
-        ++count;
-        int mid = low + (high - low) / 2;
-        if (sortedArray[mid] == key) {
-            cout << "Element found at index: " << mid << " (in sorted array)" << endl;
-            cout << "Number of comparisons: " << count << endl;
-            return;
-        } else if (sortedArray[mid] < key) {
+        else if(arr[mid] < key){
+            comp++;
             low = mid + 1;
-        } else {
+        }
+        else{
+            comp++;
             high = mid - 1;
         }
     }
-    cout << "Element not found" << endl;
-    cout << "Number of comparisons: " << count << endl;
+    return -1;
 }
 
-void jumpSearch(const vector<int>& a, int key) {
-    int n = a.size();
-    int count = 0;
-    int step = static_cast<int>(sqrt(n));
-    int prev = 0;
-    vector<int> sortedArray = a; // Create a copy of the array and sort it
-    sort(sortedArray.begin(), sortedArray.end());
-    cout << "Sorted Array: ";
-    for (int i = 0; i < n; i++) {
-        cout << sortedArray[i] << " ";
-    }
-    cout << endl;
-
-    while (sortedArray[min(step, n) - 1] < key) {
-        ++count;
-        prev = step;
-        step += static_cast<int>(sqrt(n));
-        if (prev >= n) {
-            cout << "Element not found" << endl;
-            cout << "Number of comparisons: " << count << endl;
-            return;
+int main(){
+    int t;
+    cout<<"Abhilakshya Bhatt\nRoll Number: 03\nUniversity Roll Number: 2023975\n";
+    cout<<"Enter the number of test cases: ";
+    cin >> t;
+    while(t--){
+        int n,comp=0;
+        cout<<"Enter the size of array: ";
+        cin >> n;
+        vector<int> arr(n);
+        cout<<"Enter the elements of array: ";
+        for(int i = 0; i < n; i++){
+            cin >> arr[i];
+        }
+        int key;
+        cout<<"Enter the key element: ";
+        cin >> key;
+        int index = binarySearch(arr, key, comp);
+        if(index == -1){
+            cout<<"Not Present "<<comp<<endl;
+        }
+        else{
+            cout<<"Present "<<comp<<endl;
         }
     }
-
-    while (sortedArray[prev] < key) {
-        ++count;
-        prev++;
-        if (prev == min(step, n)) {
-            cout << "Element not found" << endl;
-            cout << "Number of comparisons: " << count << endl;
-            return;
-        }
-    }
-
-    if (sortedArray[prev] == key) {
-        cout << "Element found at index: " << prev << " (in sorted array)" << endl;
-        cout << "Number of comparisons: " << count << endl;
-        return;
-    }
-    cout << "Element not found" << endl;
-    cout << "Number of comparisons: " << count << endl;
-}
-
-int main() {
-    int n, key;
-    cout << "Enter the size of the array: ";
-    cin >> n;
-    vector<int> a(n);
-    cout << "Enter the elements of the array: ";
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    cout << "Enter the key: ";
-    cin >> key;
-    cout << "Linear Search: " << endl;
-    linearSearch(a, key);
-    cout << endl << "Binary Search: " << endl;
-    binarySearch(a, key);
-    cout << endl << "Jump Search: " << endl;
-    jumpSearch(a, key);
 
     return 0;
 }
