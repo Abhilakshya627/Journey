@@ -1,81 +1,44 @@
-
-//Given an unsorted array of integers, design & implement a program to sort an array by dividing the array into subarrays and then comparing the subarrays and insert them in position to get the sorted array. Your program should also find the number of comparisons and shifts required for sorting the array.
-#include <iostream>
-#include <vector>
+//Given an unsorted array of integers, design an algorithm and a program to sort the array using insertion sort. Your program should be able to find number of comparisons and shifts ( shifts - total number of times the array elements are shifted from their place) required for sorting the array.
+#include<bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int>& a, int left, int mid, int right, int& comparisons, int& shifts) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-    vector<int> leftArr(n1);
-    vector<int> rightArr(n2);
-    for (int i = 0; i < n1; i++) {
-        leftArr[i] = a[left + i];
-        shifts++; // Counting shifts 
-    }
-    for (int j = 0; j < n2; j++) {
-        rightArr[j] = a[mid + 1 + j];
-        shifts++; // Counting shifts
-    }
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        comparisons++; // Counting comparisons
-        if (leftArr[i] <= rightArr[j]) {
-            a[k] = leftArr[i];
-            i++;
-        } else {
-            a[k] = rightArr[j];
-            j++;
+void insertionSort(vector<int> arr){
+    int n = arr.size();
+    int comparisons = 0, shifts = 0;
+    for(int i = 1; i < n; i++){
+        int key = arr[i];
+        int j = i - 1;
+        while(j >= 0 && arr[j] > key){
+            comparisons++;
+            shifts++;
+            arr[j + 1] = arr[j];
+            j--;
         }
-        k++;
-        shifts++; // Counting shifts
+        shifts++;
+        arr[j + 1] = key;
     }
-    while (i < n1) {
-        a[k] = leftArr[i];
-        i++;
-        k++;
-        shifts++; // Counting shifts
+    cout<<"Sorted array: ";
+    for(int i = 0; i < n; i++){
+        cout<<arr[i]<<" ";
     }
-    while (j < n2) {
-        a[k] = rightArr[j];
-        j++;
-        k++;
-        shifts++; // Counting shifts
-    }
+    cout<<"\nComparisons: "<<comparisons<<"\nShifts: "<<shifts<<endl;
 }
 
-void mergeSort(vector<int>& a, int left, int right, int& comparisons, int& shifts) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(a, left, mid, comparisons, shifts);
-        mergeSort(a, mid + 1, right, comparisons, shifts);
-        merge(a, left, mid, right, comparisons, shifts);
-    }
-}
-
-int main() {
+int main(){
     int t;
-    cout << "Enter the number of test cases: ";
-    cin >> t;
-    while (t--) {
+    cout<<"Abhilakshya Bhatt\nRoll Number: 03\nUniversity Roll Number: 2023975\n";
+    cout<<"Enter the number of test cases: ";
+    cin>>t;
+    while(t--){
         int n;
-        cout << "Enter the size of the array: ";
-        cin >> n;
+        cout<<"Enter the size of array: ";
+        cin>>n;
         vector<int> arr(n);
-        cout << "Enter the elements of the array: ";
-        for (int i = 0; i < n; i++) {
-            cin >> arr[i];
+        cout<<"Enter the elements of array: ";
+        for(int i = 0; i < n; i++){
+            cin>>arr[i];
         }
-        int comparisons = 0, shifts = 0;
-        mergeSort(arr, 0, n - 1, comparisons, shifts);
-        cout << "Array after sorting: ";
-        for (int i = 0; i < n; i++) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-        cout << "Number of comparisons: " << comparisons << endl;
-        cout << "Number of shifts: " << shifts << endl;
-        cout << endl;
+        insertionSort(arr);
     }
 
     return 0;

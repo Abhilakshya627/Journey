@@ -1,46 +1,49 @@
-//Using an unsorted array, design an algorithm and implement a program using insertion sort to sort an array of elements. Your program should read the elements of an array from the user and use insertion sort to sort the array. Count the number of comparisons and shifts during the sort and print the elements of the sorted array.
-#include <iostream>
-#include <vector>
+//Given a sorted array of positive integers, design an algorithm and implement it using a program to find three indices i, j, k such that arr[i] + arr[j] = arr[k].
+#include <bits/stdc++.h>
 using namespace std;
 
-void insertSort(vector<int> arr){
+void findIndices(const vector<int>& arr) {
     int n = arr.size();
-    int comparisons = 0, shifts = 0;
-    for(int i=1; i<n; ++i){
-        int key = arr[i];
-        int j = i-1;
-        while(j>=0 && arr[j]>key){
-            arr[j+1] = arr[j];
-            ++shifts;
-            ++comparisons;
-            --j;
+    bool found = false;
+    for (int k = 2; k < n; k++) {
+        int i = 0; 
+        int j = k - 1; 
+
+        while (i < j) {
+            int sum = arr[i] + arr[j];
+            if (sum == arr[k]) {
+                cout << "Found indices: i = " << i << ", j = " << j << ", k = " << k << endl;
+                cout << "Values: arr[i] = " << arr[i] << ", arr[j] = " << arr[j] << ", arr[k] = " << arr[k] << endl;
+                found = true;
+                break; 
+            } else if (sum < arr[k]) {
+                i++; 
+            } else {
+                j--; 
+            }
         }
-        arr[j+1] = key;
-        ++shifts;
     }
-    cout<<"Sorted array: ";
-    for(int i=0; i<n; ++i){
-        cout<<arr[i]<<" ";
+    if (!found) {
+        cout << "No sequence found." << endl;
     }
-    cout<<endl;
-    cout<<"Comparisons: "<<comparisons<<endl;
-    cout<<"Shifts: "<<shifts<<endl;
 }
 
 int main(){
     int t;
-    cout<<"Enter the number of test cases: ";
-    cin>>t;
+    cout << "Abhilakshya Bhatt\nRoll Number: 03\nUniversity Roll Number: 2023975\n";
+    cout << "Enter the number of test cases: ";
+    cin >> t;
     while(t--){
         int n;
-        cout<<"Enter the number of elements in the array: ";
-        cin>>n;
+        cout << "Enter the size of array: ";
+        cin >> n;
         vector<int> arr(n);
-        cout<<"Enter the elements of the array: "<<endl;
-        for(int i=0; i<n; ++i){
-            cout<<"Enter element "<<i+1<<": ";
-            cin>>arr[i];
+        cout << "Enter the elements of array: ";
+        for(int i = 0; i < n; i++){
+            cin >> arr[i];
         }
-        insertSort(arr);
+        findIndices(arr);
     }
+
+    return 0;
 }

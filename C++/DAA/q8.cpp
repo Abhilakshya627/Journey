@@ -1,79 +1,44 @@
- #include<bits/stdc++.h>
+//Given an unsorted array of integers, design an algorithm and implement a program to sort this array using selection sort. Your program should also find number of comparisons and number of swaps required.
+#include<bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int>& arr, int left, int mid, int right,int comparisons,int shifts) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-    vector<int> L(n1), R(n2);
-    for (int i = 0; i < n1; i++) {
-        L[i] = arr[left + i];
-        shifts++;
-    }
-    for (int i = 0; i < n2; i++) {
-        R[i] = arr[mid + 1 + i];
-        shifts++;
-    }
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        comparisons++;
-        if (L[i] <= R[j]) {
-            arr[k] = L[i];
-            i++;
-        } else {
-            arr[k] = R[j];
-            j++;
+void selectionSort(vector<int> arr){
+    int n = arr.size();
+    int comparisons = 0, swaps = 0;
+    for(int i = 0; i < n - 1; i++){
+        int minIndex = i;
+        for(int j = i + 1; j < n; j++){
+            comparisons++;
+            if(arr[j] < arr[minIndex]){
+                minIndex = j;
+            }
         }
-        k++;
-        shifts++;
+        swaps++;
+        swap(arr[i], arr[minIndex]);
     }
-    while (i < n1) {
-        arr[k] = L[i];
-        i++;
-        k++;
-        shifts++;
+    cout<<"Sorted array: ";
+    for(int i = 0; i < n; i++){
+        cout<<arr[i]<<" ";
     }
-    while (j < n2) {
-        arr[k] = R[j];
-        j++;
-        k++;
-        shifts++;
-    }
+    cout<<"\nComparisons: "<<comparisons<<"\nSwaps: "<<swaps<<endl;
 }
 
-void mergeSort(vector<int>& arr, int left, int right,int comparisons,int shifts) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid,comparisons,shifts);
-        mergeSort(arr, mid + 1, right,comparisons,shifts);
-        merge(arr, left, mid, right,comparisons,shifts);
-    }
-}
-
-vector<int> removeDuplicates(vector<int>& arr) {
-    set<int> uniqueElements(arr.begin(), arr.end());
-    return vector<int>(uniqueElements.begin(), uniqueElements.end());
-}
-
-int main() {
+int main(){
     int t;
-    cout << "Enter the number of test cases: ";
-    cin >> t;
-    while (t--) {
+    cout<<"Abhilakshya Bhatt\nRoll Number: 03\nUniversity Roll Number: 2023975\n";
+    cout<<"Enter the number of test cases: ";
+    cin>>t;
+    while(t--){
         int n;
-        cout << "Enter the size of the array: ";
-        cin >> n;
-        vector<int> arr (n);
-        int comparisons = 0, shifts = 0;
-        mergeSort(arr, 0, arr.size() - 1, comparisons, shifts);
-        vector<int> uniqueArr = removeDuplicates(arr);
-        cout << "Sorted array without duplicates: ";
-        for (int num : uniqueArr) {
-            cout << num << " ";
+        cout<<"Enter the size of array: ";
+        cin>>n;
+        vector<int> arr(n);
+        cout<<"Enter the elements of array: ";
+        for(int i = 0; i < n; i++){
+            cin>>arr[i];
         }
-        cout << endl;
-        cout << "Number of comparisons: " << comparisons << endl;
-        cout << "Number of shifts: " << shifts << endl;
+        selectionSort(arr);
     }
-    
+
     return 0;
 }
